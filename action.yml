@@ -3,14 +3,25 @@ description: A composite action to cache yarn packages
 inputs:
   cache-dir:
     description: A list of files, directories, and wildcard patterns to cache and restore
-    required: true
 outputs:
   cache-hit:
-    description: indicates whether there was a cache hit (true) or miss (false)
+    description: A boolea value indicating a cache hit
     value: ${{ steps.cache-yarn.outputs.cache-hit }}
 runs:
   using: composite
   steps:
+    - shell: bash
+      run: |
+        echo "------------------------------------------------------------------------------------"
+        echo "\n"
+        echo "\n"
+        echo "\n"
+        echo "Input: ${{ inputs.cache-dir }}"
+        echo "\n"
+        echo "\n"
+        echo "\n"
+        echo "------------------------------------------------------------------------------------"
+
     - id: cache-yarn
       uses: actions/cache@v3
       shell: bash
